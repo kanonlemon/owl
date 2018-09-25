@@ -1,4 +1,4 @@
-package owl
+package main
 
 import(
 	"fmt"

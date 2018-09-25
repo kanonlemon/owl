@@ -30,7 +30,7 @@ func Owlfile(config Config){
 	}
 	for i, filepath := range filepaths{
 		log.Printf("%d %% %d of %d: %s", i * 100 / total , i + 1, total, filepath )
-		//os.Remove(filepath)
+		os.Remove(filepath)
 	} 
 }
 
@@ -56,8 +56,10 @@ func traverseDir(config Config) (filepaths []string, err error){
 		filepath := config.Dir + "/" + file.Name()
 		if file.IsDir()  {
 			if config.Recursive {
+				curDir := config.Dir
 				config.Dir = filepath
 				innerFilepaths, innerErr := traverseDir(config)
+				config.Dir = curDir
 				if innerErr != nil{
 					log.Fatal(err)
 				}

@@ -1,6 +1,6 @@
 dir: /opt
 pattern: CON*
-recursive: false
+recursive: true
 conditions: C<10d
 opration: archive
 archive_path: /tmp
