@@ -20,7 +20,7 @@ func Owlfile(config Config){
 		log.Fatal(err)
 	}
 	total := len(filepaths)
-
+	
 	if config.Operation == OPERATION_ARCHIVE{
 		archive, arerr := TarArchive(config.ArchivePath, filepaths)
 		if arerr != nil{

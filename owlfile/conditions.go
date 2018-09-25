@@ -5,7 +5,6 @@ import(
 	"os"
 	"log"
 	"time"
-	"strconv"
 )
 
 
@@ -58,20 +57,12 @@ func meetCondition(fileInfo os.FileInfo, condition string)( isMeet bool, err err
 	}else{
 		compare := condition[0:1]
 		operation := condition[1:2]
-		count, convErr := strconv.Atoi( condition[2: len(condition) - 1] )
+		durationStr := condition[2: len(condition)]
 		
-		if convErr != nil{
-			log.Fatal(convErr)
-		}
-		
-		unit := condition[len(condition) - 1: len(condition) ]
-		var duration time.Duration
+		duration, parseError := time.ParseDuration(durationStr)
 
-		switch unit{
-		case UNIT_SECOND : duration = time.Second    ; break;
-		case UNIT_MINITE : duration = time.Minute    ; break;
-		case UNIT_HOUR   : duration = time.Hour      ; break;
-		case UNIT_DAY    : duration = time.Hour * 12 ; break;
+		if parseError != nil{
+			log.Fatal(parseError)
 		}
 
 		cmptime, tiError := timeinfo(fileInfo, compare)
@@ -80,7 +71,9 @@ func meetCondition(fileInfo os.FileInfo, condition string)( isMeet bool, err err
 			log.Fatal(tiError)
 		}
 
-		jgtime := time.Now().Add(  -1 * time.Duration(  float64(count) * duration.Seconds()) )
+		jgtime := time.Now().Add(  -1 *  duration )
+
+		//log.Printf("%s  [%s]  %s", jgtime.String(),operation, cmptime.String())
 
 		if operation == GREATE_OPERATOR{
 			isMeet = jgtime.After(cmptime)
