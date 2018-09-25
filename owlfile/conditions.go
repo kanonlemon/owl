@@ -13,13 +13,10 @@ const (
 	PATTERN LIKE: COMPARE OPERATOR NUMBER UNIT
 	UNIT(defined by Golang time package): 
 	s: second
-	i: minute
+	m: minute
 	h: hour
-	d: day
-	m: month
-	y: year
 	Example:
-	C>10d: created more than ten days
+	C>240h: created more than ten days
 	M<2h:  moditied in last 2 hour 
 	`
 
