@@ -1,4 +1,4 @@
-dir: /opt/go
+dir: /opt
 pattern: CON*
 recursive: false
 conditions: C<10d
