@@ -22,6 +22,7 @@ func TarArchive(dis string, files []string) (filename string, err error) {
 	exec_command := []string{ "zcvf", archive}
 	exec_command = append(exec_command, files...)
 	exec_result, err := exec.Command( "tar", exec_command... ).Output()
+	log.Printf("Starting archiving")
 	if err != nil{
 		log.Fatal(err)
 	}

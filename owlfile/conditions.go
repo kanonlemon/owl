@@ -100,6 +100,10 @@ func MeetConditions(fileInfo os.FileInfo, conditions []string)( isMeet bool, err
 			log.Fatal(meetError)
 		}
 		isMeet = isMeet || curMeet
+		if isMeet{
+			log.Printf("%s %s",  condition, fileInfo.Name())
+			break
+		}
 	}
 	return isMeet, nil;
 }
