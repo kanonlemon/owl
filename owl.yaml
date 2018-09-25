@@ -1,0 +1,6 @@
+dir: /opt/go
+pattern: CON*
+recursive: false
+conditions: C<10d
+opration: archive
+archive_path: /tmp
