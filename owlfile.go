@@ -5,7 +5,7 @@ import(
 	"flag"
 	"log"
 	"os"
-	owlfile "github.com/owl/owlfile"
+	owlfile "github.com/kanonlemon/owl/owlfile"
 )
 
 
